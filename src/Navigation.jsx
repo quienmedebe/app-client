@@ -43,7 +43,8 @@ const OverviewStackComponent = () => {
   return (
     <OverviewStack.Navigator initialRouteName='Overview' screenOptions={defaultStackNavigatorOptions}>
       <OverviewStack.Screen name='Overview' component={Overview} options={{title: 'Resumen'}} />
-      <OverviewStack.Screen name='DebtEditor' component={DebtEditor} />
+      <OverviewStack.Screen name='AddDebt' component={DebtEditor} options={{title: 'Añadir deuda'}} />
+      <OverviewStack.Screen name='EditDebt' component={DebtEditor} options={{title: 'Editar deuda'}} />
     </OverviewStack.Navigator>
   );
 };
