@@ -1,17 +1,27 @@
 {
-  "name": "QuienMeDebe",
-  "version": "0.0.1",
+  "name": "app-client",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "check-package-manager": "node -e \"!process.env.npm_config_user_agent.startsWith('npm/') && !console.log('---- USE NPM TO INSTALL DEPENDENCIES ----') && process.exit(1)\"",
+    "preinstall": "npm run check-package-manager --silent",
+    "clean": "npx react-native-clean-project",
+    "build:android": "react-native run-android",
+    "build:ios": "react-native run-ios",
+    "build:all": "npm run build:android; npm run build:ios",
+    "ios:pods": "cd ios && pod install; cd ..",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
     "react": "16.13.1",
-    "react-native": "0.63.4"
+    "react-error-boundary": "^3.1.0",
+    "react-native": "0.63.4",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -19,9 +29,20 @@
     "@react-native-community/eslint-config": "^1.1.0",
     "babel-jest": "^25.1.0",
     "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-native": "^3.10.0",
+    "husky": "^4.3.0",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
+    "pretty-quick": "^3.1.0",
     "react-test-renderer": "16.13.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "jest": {
     "preset": "react-native"
