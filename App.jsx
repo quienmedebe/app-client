@@ -5,7 +5,7 @@ import {Provider as ReduxProvider} from 'react-redux';
 import store from './src/redux/store';
 import AppManager from './src/AppManager';
 import AppError from './src/AppError';
-// import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 
 const App = () => {
   useEffect(() => {
@@ -14,11 +14,11 @@ const App = () => {
 
   return (
     <ErrorBoundary FallbackComponent={AppError}>
-      {/* <NavigationContainer> */}
-      <ReduxProvider store={store}>
-        <AppManager />
-      </ReduxProvider>
-      {/* </NavigationContainer> */}
+      <NavigationContainer>
+        <ReduxProvider store={store}>
+          <AppManager />
+        </ReduxProvider>
+      </NavigationContainer>
     </ErrorBoundary>
   );
 };
