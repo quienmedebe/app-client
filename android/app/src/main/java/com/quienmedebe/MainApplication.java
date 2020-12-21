@@ -1,4 +1,4 @@
-package com.quienmedebe;
+package com.quienmedebe.app;
 
 import android.app.Application;
 import android.content.Context;
