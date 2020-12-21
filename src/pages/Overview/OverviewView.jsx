@@ -1,11 +1,16 @@
-import React, {useMemo} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import React, {useCallback, useMemo} from 'react';
+import {View, StyleSheet, FlatList, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import H1 from '../../components/UI/Text/H1';
 import StyledText from '../../components/UI/Text/StyledText';
 import AddButtonCircle from '../../components/UI/Button/AddButtonCircle';
 import {Formats} from '../../modules';
+import desertImage from '../../../assets/images/desert.png';
+import {Poppins} from '../../theme/fonts';
 
 const OverviewView = ({debtBalance, pendingDebts}) => {
+  const navigation = useNavigation();
+
   const BalanceContent = useMemo(() => {
     const formatter = Formats.currencyFormat('es');
     const formattedBalance = formatter.format(debtBalance);
@@ -13,10 +18,28 @@ const OverviewView = ({debtBalance, pendingDebts}) => {
     return <StyledText style={[styles.summaryContent]}>{formattedBalance}</StyledText>;
   }, [debtBalance]);
 
-  const PendingDebtItem = useMemo(item => {
+  const EmptyListContent = useMemo(() => {
+    return (
+      <View style={[styles.emptyListContainer]}>
+        <Image source={desertImage} style={[styles.emptyListImage]} />
+        <StyledText style={[styles.emptyListTitle]}>No tienes deudas pendientes</StyledText>
+        <StyledText style={[styles.emptyListSubtitle]}>Puedes crear una nueva pulsando en el botón de añadir que hay abajo.</StyledText>
+      </View>
+    );
+  }, []);
+
+  const renderPendingDebtItem = useCallback(item => {
     console.log(item);
     return null;
   }, []);
+
+  const PendingDebtsList = useMemo(() => {
+    if (!pendingDebts.length) {
+      return EmptyListContent;
+    }
+
+    return <FlatList data={pendingDebts} renderItem={renderPendingDebtItem} keyExtractor={({id}) => id} />;
+  }, [EmptyListContent, pendingDebts, renderPendingDebtItem]);
 
   return (
     <View style={[styles.mainContainer]}>
@@ -26,10 +49,10 @@ const OverviewView = ({debtBalance, pendingDebts}) => {
       </View>
       <View style={[styles.pendingDebtsContainer]}>
         <H1 style={[styles.pendingDebtsTitle]}>Deudas pendientes</H1>
-        <FlatList data={pendingDebts} renderItem={PendingDebtItem} keyExtractor={({id}) => id} />
+        {PendingDebtsList}
       </View>
       <View style={[styles.addDebtContainer]}>
-        <AddButtonCircle onPress={console.log} />
+        <AddButtonCircle onPress={() => navigation.navigate('DebtEditor')} />
       </View>
     </View>
   );
@@ -60,6 +83,25 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     marginVertical: 10,
+  },
+  emptyListContainer: {
+    alignItems: 'center',
+  },
+  emptyListImage: {
+    width: 250,
+    height: 200,
+  },
+  emptyListTitle: {
+    textAlign: 'center',
+    fontSize: 18,
+    marginVertical: 5,
+    fontFamily: Poppins.Bold,
+  },
+  emptyListSubtitle: {
+    textAlign: 'center',
+    fontSize: 16,
+    marginVertical: 5,
+    marginHorizontal: 25,
   },
   addDebtContainer: {
     position: 'absolute',
