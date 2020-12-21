@@ -1,10 +1,13 @@
 import React, {useMemo} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import {text, main, separator} from './theme/colors';
+import {Poppins} from './theme/fonts';
+
+import HeaderLeft from './components/UI/Header/HeaderLeft';
+
 import Overview from './pages/Overview/Overview';
 import Balance from './pages/Balance/Balance';
 import DebtEditor from './pages/DebtEditor/DebtEditor';
-import {text, main, separator} from './theme/colors';
-import {Poppins} from './theme/fonts';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +28,7 @@ const Navigation = () => {
         borderBottomWidth: 1,
         borderBottomColor: separator,
       },
+      headerLeft: props => <HeaderLeft {...props} />,
     };
   }, []);
 
