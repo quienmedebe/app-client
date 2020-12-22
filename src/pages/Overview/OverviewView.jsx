@@ -52,7 +52,7 @@ const OverviewView = ({debtBalance, pendingDebts}) => {
         {PendingDebtsList}
       </View>
       <View style={[styles.addDebtContainer]}>
-        <AddButtonCircle onPress={() => navigation.navigate('DebtEditor')} />
+        <AddButtonCircle onPress={() => navigation.navigate('AddDebt')} />
       </View>
     </View>
   );
