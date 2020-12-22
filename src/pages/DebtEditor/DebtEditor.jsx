@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import DebtEditorView from './DebtEditorView';
 import AppLayout from '../../components/layouts/AppLayout';
 
@@ -8,6 +8,10 @@ const DebtEditor = () => {
   const [type, setType] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
+
+  const addDebtHandler = useCallback(() => {
+    console.log(name, amount, type, description, status);
+  }, [name, amount, type, description, status]);
 
   return (
     <AppLayout>
@@ -22,6 +26,7 @@ const DebtEditor = () => {
         setDescription={setDescription}
         status={status}
         setStatus={setStatus}
+        addDebtHandler={addDebtHandler}
       />
     </AppLayout>
   );

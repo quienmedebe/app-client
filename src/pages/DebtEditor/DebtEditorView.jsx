@@ -7,12 +7,16 @@ import InputWithValidation from '../../components/UI/Input/InputWithValidation';
 import StyledButtonOpacity from '../../components/UI/Button/StyledButtonOpacity';
 import StyledText from '../../components/UI/Text/StyledText';
 
+import {MAX_FIELD_VALUE, MAX_FIELD_LENGTH} from '../../config/config';
+import {REQUIRED, MAX_LENGTH, MIN_VALUE, MAX_VALUE, NOT_VALID_NUMBER, isNumber} from '../../modules/validation';
 import {TYPE, STATUS} from '../../modules/debt';
 import Select from '../../components/UI/Select/Select';
 import {info} from '../../theme/colors';
 
-const DebtEditorView = ({name, setName, amount, setAmount, type, setType, description, setDescription, status, setStatus}) => {
-  const {control, errors, handleSubmit} = useForm();
+const DebtEditorView = ({name, setName, amount, setAmount, type, setType, description, setDescription, status, setStatus, addDebtHandler}) => {
+  const {control, errors, handleSubmit} = useForm({
+    mode: 'onBlur',
+  });
 
   return (
     <KeyboardAwareScrollView>
@@ -22,7 +26,7 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
           control={control}
           error={errors.name?.message}
           defaultValue={name}
-          rules={{required: 'Es requerido'}}
+          rules={{required: REQUIRED(), maxLength: {value: MAX_FIELD_LENGTH, message: MAX_LENGTH(MAX_FIELD_LENGTH)}}}
           containerProps={{style: [styles.input]}}
           render={({onChange, onBlur}) => (
             <Input
@@ -42,7 +46,12 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
           control={control}
           error={errors.amount?.message}
           defaultValue={amount}
-          rules={{required: 'Es requerido'}}
+          rules={{
+            required: REQUIRED(),
+            min: {value: 0, message: MIN_VALUE(0)},
+            max: {value: MAX_FIELD_VALUE, message: MAX_VALUE(MAX_FIELD_VALUE)},
+            validate: val => isNumber(+val) || NOT_VALID_NUMBER(),
+          }}
           containerProps={{style: [styles.input]}}
           render={({onChange, onBlur}) => (
             <Input
@@ -62,7 +71,7 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
           control={control}
           error={errors.type?.message}
           defaultValue={type}
-          rules={{required: 'Es requerido'}}
+          rules={{required: REQUIRED(), maxLength: {value: MAX_FIELD_LENGTH, message: MAX_LENGTH(MAX_FIELD_LENGTH)}}}
           containerProps={{style: [styles.input, styles.select]}}
           render={({onChange, onBlur}) => (
             <Select
@@ -74,6 +83,7 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
               items={TYPE.TYPES()}
               onBlur={onBlur}
               placeholder={{value: '', label: 'Tipo de deuda'}}
+              error={!!errors.type?.message}
             />
           )}
         />
@@ -83,6 +93,7 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
           error={errors.description?.message}
           defaultValue={description}
           containerProps={{style: [styles.input]}}
+          rules={{maxLength: {value: MAX_FIELD_LENGTH, message: MAX_LENGTH(MAX_FIELD_LENGTH)}}}
           render={({onChange, onBlur}) => (
             <Input
               value={description}
@@ -102,7 +113,7 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
           control={control}
           error={errors.status?.message}
           defaultValue={status}
-          rules={{required: 'Es requerido'}}
+          rules={{required: REQUIRED(), maxLength: {value: MAX_FIELD_LENGTH, message: MAX_LENGTH(MAX_FIELD_LENGTH)}}}
           containerProps={{style: [styles.input, styles.select]}}
           render={({onChange, onBlur}) => (
             <Select
@@ -114,10 +125,11 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
               items={STATUS.STATUS()}
               onBlur={onBlur}
               placeholder={{value: '', label: 'Estado de la deuda'}}
+              error={!!errors.status?.message}
             />
           )}
         />
-        <StyledButtonOpacity style={[styles.sendContainer]} onPress={handleSubmit(console.log)}>
+        <StyledButtonOpacity style={[styles.sendContainer]} onPress={handleSubmit(addDebtHandler)}>
           <StyledText style={[styles.sendLabel]}>Guardar</StyledText>
         </StyledButtonOpacity>
       </View>
