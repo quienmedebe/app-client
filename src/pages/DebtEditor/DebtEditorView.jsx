@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useForm} from 'react-hook-form';
@@ -14,6 +14,7 @@ import Select from '../../components/UI/Select/Select';
 import {info} from '../../theme/colors';
 
 const DebtEditorView = ({name, setName, amount, setAmount, type, setType, description, setDescription, status, setStatus, addDebtHandler}) => {
+  const amountRef = useRef(null);
   const {control, errors, handleSubmit} = useForm({
     mode: 'onBlur',
   });
@@ -36,8 +37,16 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
                 setName(value);
               }}
               onBlur={onBlur}
-              label='¿A quién le debes?'
+              label={type === TYPE.CREDIT().value ? '¿Quién te debe?' : '¿A quién le debes?'}
               error={!!errors.name?.message}
+              autoCapitalize='words'
+              autoCompleteType='off'
+              clearButtonMode='while-editing'
+              importantForAutofill='no'
+              keyboardType='default'
+              maxLength={MAX_FIELD_LENGTH}
+              returnKeyType='next'
+              onSubmitEditing={() => amountRef.current?.focus()}
             />
           )}
         />
@@ -57,12 +66,16 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
             <Input
               value={amount}
               onChangeText={value => {
-                onChange(value);
-                setAmount(value);
+                const parsedValue = value.replace(/,/gi, '.');
+                onChange(parsedValue);
+                setAmount(parsedValue);
               }}
+              ref={amountRef}
               onBlur={onBlur}
               label='Cantidad (€)'
               error={!!errors.amount?.message}
+              autoCompleteType='off'
+              keyboardType='decimal-pad'
             />
           )}
         />
@@ -105,6 +118,13 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
               label='Descripción'
               error={!!errors.description?.message}
               multiline
+              numberOfLines={3}
+              autoCapitalize='sentences'
+              autoCompleteType='off'
+              importantForAutofill='no'
+              keyboardType='default'
+              maxLength={MAX_FIELD_LENGTH}
+              returnKeyType='next'
             />
           )}
         />

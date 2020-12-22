@@ -4,7 +4,7 @@ import {Platform} from 'react-native';
 import color from 'color';
 import {main, text} from '../../../theme/colors';
 
-const Input = ({...props}) => {
+const Input = React.forwardRef(({...props}, ref) => {
   const defaultSelectorColor = useMemo(() => {
     if (Platform.OS === 'android') {
       return color.rgb(text).fade(0.5).string();
@@ -13,8 +13,8 @@ const Input = ({...props}) => {
     return text;
   }, []);
 
-  return <TextInput mode='outlined' selectionColor={defaultSelectorColor} {...props} />;
-};
+  return <TextInput mode='outlined' selectionColor={defaultSelectorColor} ref={ref} {...props} />;
+});
 
 Input.defaultProps = {
   theme: {
