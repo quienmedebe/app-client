@@ -1,2 +1,4 @@
-export const DEBT = () => ({key: 'DEBT', label: 'A deber'});
-export const CREDIT = () => ({key: 'CREDIT', label: 'A cobrar'});
+export const DEBT = () => ({value: 'DEBT', label: 'A deber'});
+export const CREDIT = () => ({value: 'CREDIT', label: 'A cobrar'});
+
+export const TYPES = (...args) => [DEBT(...args), CREDIT(...args)];

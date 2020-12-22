@@ -1,2 +1,4 @@
-export const PENDING = () => ({key: 'PENDING', label: 'Pendiente'});
-export const PAID = () => ({key: 'PAID', label: 'Pagado'});
+export const PENDING = () => ({value: 'PENDING', label: 'Pendiente'});
+export const PAID = () => ({value: 'PAID', label: 'Pagado'});
+
+export const STATUS = (...args) => [PENDING(...args), PAID(...args)];
