@@ -25,4 +25,4 @@ export function getRealm() {
   return realm;
 }
 
-export {Debt};
+export {Debt, Utils};

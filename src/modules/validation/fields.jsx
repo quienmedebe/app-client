@@ -9,6 +9,6 @@ export const publicId = {
 };
 
 export const dateTime = {
-  type: 'object',
+  type: 'string',
   format: 'date-time',
 };

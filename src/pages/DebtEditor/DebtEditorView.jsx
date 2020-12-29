@@ -15,7 +15,7 @@ import {info} from '../../theme/colors';
 
 const DebtEditorView = ({name, setName, amount, setAmount, type, setType, description, setDescription, status, setStatus, addDebtHandler}) => {
   const amountRef = useRef(null);
-  const {control, errors, handleSubmit} = useForm({
+  const {control, errors, handleSubmit, reset} = useForm({
     mode: 'onBlur',
   });
 
@@ -37,7 +37,7 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
                 setName(value);
               }}
               onBlur={onBlur}
-              label={type === TYPE.CREDIT().value ? '¿Quién te debe?' : '¿A quién le debes?'}
+              label={type === TYPE.CREDIT.value ? '¿Quién te debe?' : '¿A quién le debes?'}
               error={!!errors.name?.message}
               autoCapitalize='words'
               autoCompleteType='off'
@@ -149,7 +149,7 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
             />
           )}
         />
-        <StyledButtonOpacity style={[styles.sendContainer]} onPress={handleSubmit(addDebtHandler)}>
+        <StyledButtonOpacity style={[styles.sendContainer]} onPress={handleSubmit(() => addDebtHandler(reset))}>
           <StyledText style={[styles.sendLabel]}>Guardar</StyledText>
         </StyledButtonOpacity>
       </View>

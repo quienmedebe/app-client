@@ -1,5 +1,5 @@
 import runMigrations from './runMigrations';
 import startRealm from './startRealm';
-import write from './write';
+import writeDB from './writeDB';
 
-export {runMigrations, startRealm, write};
+export {runMigrations, startRealm, writeDB};
