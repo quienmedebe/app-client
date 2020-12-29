@@ -8,11 +8,15 @@ import store from './src/redux/store';
 import AppManager from './src/AppManager';
 import AppError from './src/AppError';
 import {Poppins} from './src/theme/fonts';
-import {main, text} from './src/theme/colors';
+import {connectDB} from './src/database';
 
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
+  }, []);
+
+  useEffect(() => {
+    connectDB();
   }, []);
 
   const paperFonts = useMemo(() => {
