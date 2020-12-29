@@ -1,4 +1,5 @@
 import _isNumber from './isNumber';
+import * as _Fields from './fields';
 
 export const REQUIRED = () => `Este campo es obligatorio`;
 export const MIN_LENGTH = num => `La longitud mínima es de ${num} caracteres`;
@@ -9,3 +10,5 @@ export const MAX_VALUE = num => `El valor máximo es ${num}`;
 export const NOT_VALID_NUMBER = () => `No es un número válido`;
 
 export const isNumber = _isNumber;
+
+export const Fields = _Fields;
