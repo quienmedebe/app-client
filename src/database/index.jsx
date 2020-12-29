@@ -1,5 +1,6 @@
-import Realm from 'realm';
 import {migration0001, migration0002} from './migrations';
+import * as Utils from './utils';
+import * as Debt from './debt';
 
 let realm = {};
 
@@ -8,33 +9,20 @@ const schemas = [
   {schema: migration0002.schema, schemaVersion: 2, migration: migration0002.migration(2)},
 ];
 
-export function runMigrations() {
-  let nextSchemaIndex = Realm.schemaVersion(Realm.defaultPath);
-  if (nextSchemaIndex !== -1) {
-    while (nextSchemaIndex < schemas.length) {
-      const migratedRealm = new Realm(schemas[nextSchemaIndex++]);
-      migratedRealm.close();
-    }
+export async function connectDB() {
+  try {
+    Utils.runMigrations(schemas);
+    const rm = await Utils.startRealm(schemas);
+
+    console.info('Connected to Database');
+    realm = rm;
+  } catch (error) {
+    console.error(error);
   }
-}
-
-export function startRealm() {
-  Realm.open(schemas[schemas.length - 1])
-    .then(rm => {
-      console.info('Connected to Database');
-      realm = rm;
-    })
-    .catch(error => {
-      console.error('Connection to Database has failed');
-      console.error(error);
-    });
-}
-
-export function connectDB() {
-  runMigrations();
-  startRealm();
 }
 
 export function getRealm() {
   return realm;
 }
+
+export {Debt};
