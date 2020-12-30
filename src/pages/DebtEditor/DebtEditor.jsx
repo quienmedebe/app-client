@@ -20,6 +20,14 @@ const DebtEditor = () => {
   const debtPublicId = useNavigationState(state => state.routes[state.routes.length - 1].params?.id);
   const [finishFirstLoad, setFinishFirstLoad] = useState(false);
 
+  const goBackOrOverview = useCallback(() => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      navigation.navigate('Overview');
+    }
+  }, [navigation]);
+
   const loadCurrentDebt = useCallback(() => {
     const realm = getRealm();
     const debt = Debts.Functions.getDebtByPublicId(realm, debtPublicId);
@@ -50,11 +58,7 @@ const DebtEditor = () => {
       const deleteHandler = () => {
         Debt.removeDebt(realm, debtPublicId);
 
-        if (navigation.canGoBack()) {
-          navigation.goBack();
-        } else {
-          navigation.navigate('Overview');
-        }
+        goBackOrOverview();
       };
 
       const errorHandler = () => {
@@ -63,11 +67,27 @@ const DebtEditor = () => {
 
       Utils.writeDB(realm, deleteHandler, errorHandler);
     }
-  }, [navigation, debtPublicId]);
+  }, [goBackOrOverview, debtPublicId]);
 
-  const editDebtHandler = useCallback(() => {
-    console.log('edit debt');
-  }, []);
+  const editDebtHandler = useCallback(
+    onSuccess => {
+      const parsedAmount = +amount;
+      const realm = getRealm();
+      const editHandler = () => {
+        Debt.editDebt(realm, debtPublicId, {name, amount: parsedAmount, type, description, status});
+        onSuccess?.();
+
+        goBackOrOverview();
+      };
+
+      const errorHandler = () => {
+        setAlertType(Errors.UNKNOWN);
+      };
+
+      Utils.writeDB(realm, editHandler, errorHandler);
+    },
+    [goBackOrOverview, debtPublicId, name, amount, type, description, status],
+  );
 
   const addDebtHandler = useCallback(
     onSuccess => {
@@ -75,14 +95,9 @@ const DebtEditor = () => {
       const realm = getRealm();
       const writeHandler = () => {
         Debt.createDebt(realm, {name, amount: parsedAmount, type, description, status});
-
-        setName('');
-        setAmount('');
-        setType('');
-        setDescription('');
-        setStatus('');
         onSuccess?.();
-        navigation.navigate('Overview');
+
+        goBackOrOverview();
       };
 
       const errorHandler = () => {
@@ -91,7 +106,7 @@ const DebtEditor = () => {
 
       Utils.writeDB(realm, writeHandler, errorHandler);
     },
-    [navigation, name, amount, type, description, status],
+    [goBackOrOverview, name, amount, type, description, status],
   );
 
   const ShownAlert = useMemo(() => {
