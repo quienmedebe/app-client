@@ -1,10 +1,12 @@
-import React, {useState, useCallback, useMemo} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, {useState, useCallback, useMemo, useEffect} from 'react';
+import {Alert} from 'react-native';
+import {useNavigation, useNavigationState} from '@react-navigation/native';
 import DebtEditorView from './DebtEditorView';
 import AppLayout from '../../components/layouts/AppLayout';
 import {Debt, Utils, getRealm} from '../../database';
+import {Debts} from '../../modules';
 import {Errors} from '../../modules';
-import Alert from '../../components/UI/Alert/StyledAlert';
+import StyledAlert from '../../components/UI/Alert/StyledAlert';
 
 const DebtEditor = () => {
   const [name, setName] = useState('');
@@ -15,6 +17,77 @@ const DebtEditor = () => {
 
   const [alertType, setAlertType] = useState(null);
   const navigation = useNavigation();
+  const debtPublicId = useNavigationState(state => state.routes[state.routes.length - 1].params?.id);
+  const [finishFirstLoad, setFinishFirstLoad] = useState(false);
+
+  const goBackOrOverview = useCallback(() => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      navigation.navigate('Overview');
+    }
+  }, [navigation]);
+
+  const loadCurrentDebt = useCallback(() => {
+    const realm = getRealm();
+    const debt = Debts.Functions.getDebtByPublicId(realm, debtPublicId);
+    setName(debt.name);
+    setAmount(debt.amount.toString());
+    setType(debt.type);
+    setDescription(debt.description);
+    setStatus(debt.status);
+    setFinishFirstLoad(true);
+  }, [debtPublicId]);
+
+  useEffect(() => {
+    if (debtPublicId) {
+      loadCurrentDebt();
+    }
+  }, [debtPublicId, loadCurrentDebt]);
+
+  const deleteDebtHandler = useCallback(async () => {
+    const continueWithDeletion = await new Promise(resolve => {
+      Alert.alert('¿Seguro que quieres eliminar la deuda?', 'Esta acción no puede deshacerse', [
+        {text: 'Cancelar', onPress: () => resolve(false)},
+        {text: 'Eliminar', onPress: () => resolve(true)},
+      ]);
+    });
+
+    if (continueWithDeletion) {
+      const realm = getRealm();
+      const deleteHandler = () => {
+        Debt.removeDebt(realm, debtPublicId);
+
+        goBackOrOverview();
+      };
+
+      const errorHandler = () => {
+        setAlertType(Errors.UNKNOWN);
+      };
+
+      Utils.writeDB(realm, deleteHandler, errorHandler);
+    }
+  }, [goBackOrOverview, debtPublicId]);
+
+  const editDebtHandler = useCallback(
+    onSuccess => {
+      const parsedAmount = +amount;
+      const realm = getRealm();
+      const editHandler = () => {
+        Debt.editDebt(realm, debtPublicId, {name, amount: parsedAmount, type, description, status});
+        onSuccess?.();
+
+        goBackOrOverview();
+      };
+
+      const errorHandler = () => {
+        setAlertType(Errors.UNKNOWN);
+      };
+
+      Utils.writeDB(realm, editHandler, errorHandler);
+    },
+    [goBackOrOverview, debtPublicId, name, amount, type, description, status],
+  );
 
   const addDebtHandler = useCallback(
     onSuccess => {
@@ -22,14 +95,9 @@ const DebtEditor = () => {
       const realm = getRealm();
       const writeHandler = () => {
         Debt.createDebt(realm, {name, amount: parsedAmount, type, description, status});
-
-        setName('');
-        setAmount('');
-        setType('');
-        setDescription('');
-        setStatus('');
         onSuccess?.();
-        navigation.navigate('Overview');
+
+        goBackOrOverview();
       };
 
       const errorHandler = () => {
@@ -38,7 +106,7 @@ const DebtEditor = () => {
 
       Utils.writeDB(realm, writeHandler, errorHandler);
     },
-    [navigation, name, amount, type, description, status],
+    [goBackOrOverview, name, amount, type, description, status],
   );
 
   const ShownAlert = useMemo(() => {
@@ -46,7 +114,7 @@ const DebtEditor = () => {
       switch (alertType) {
         case Errors.UNKNOWN:
         default:
-          return <Alert title='Error' message='Ha ocurrido un error creando la deuda' onDismiss={() => setAlertType(null)} />;
+          return <StyledAlert title='Error' message='Ha ocurrido un error creando la deuda' onDismiss={() => setAlertType(null)} />;
       }
     }
 
@@ -66,7 +134,11 @@ const DebtEditor = () => {
         setDescription={setDescription}
         status={status}
         setStatus={setStatus}
+        deleteDebtHandler={deleteDebtHandler}
+        editDebtHandler={editDebtHandler}
         addDebtHandler={addDebtHandler}
+        debtPublicId={debtPublicId}
+        finishFirstLoad={finishFirstLoad}
       />
       {ShownAlert}
     </AppLayout>
