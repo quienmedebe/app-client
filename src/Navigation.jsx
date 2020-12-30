@@ -41,7 +41,7 @@ const defaultDrawerNavigatorOptions = {};
 
 const OverviewStackComponent = () => {
   return (
-    <OverviewStack.Navigator initialRouteName='AddDebt' screenOptions={defaultStackNavigatorOptions}>
+    <OverviewStack.Navigator initialRouteName='Overview' screenOptions={defaultStackNavigatorOptions}>
       <OverviewStack.Screen name='Overview' component={Overview} options={{title: 'Resumen'}} />
       <OverviewStack.Screen name='AddDebt' component={DebtEditor} options={{title: 'Añadir deuda'}} />
       <OverviewStack.Screen name='EditDebt' component={DebtEditor} options={{title: 'Editar deuda'}} />
