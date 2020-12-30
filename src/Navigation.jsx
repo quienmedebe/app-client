@@ -59,7 +59,7 @@ const DebtListStackComponent = () => {
   return (
     <DebtListStack.Navigator initialRouteName='DebtList' screenOptions={defaultStackNavigatorOptions}>
       <DebtListStack.Screen name='DebtList' component={DebtList} options={{title: 'Todas las deudas'}} />
-      <DebtListStack.Screen name='DebtEditor' component={DebtEditor} />
+      <DebtListStack.Screen name='EditDebt' component={DebtEditor} options={{title: 'Editar deuda'}} />
     </DebtListStack.Navigator>
   );
 };

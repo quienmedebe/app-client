@@ -2,7 +2,7 @@ import React, {useCallback, useMemo} from 'react';
 import {View, StyleSheet, StatusBar, Platform} from 'react-native';
 import RNRestart from 'react-native-restart';
 import {RestartAndroid} from 'react-native-restart-android';
-import {main, backgroundLight} from './theme/colors';
+import {main, backgroundLight, darkText} from './theme/colors';
 import StyledSafeAreaView from './components/UI/SafeAreaView/StyledSafeAreaView';
 import H1 from './components/UI/Text/H1';
 import CompleteBackground from './components/UI/View/CompleteBackground';
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginVertical: 15,
+    color: darkText,
   },
   buttonPosition: {
     marginVertical: 15,
