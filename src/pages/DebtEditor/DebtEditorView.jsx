@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useMemo, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useForm} from 'react-hook-form';
@@ -11,13 +11,69 @@ import {MAX_FIELD_VALUE, MAX_FIELD_LENGTH} from '../../config/config';
 import {REQUIRED, MAX_LENGTH, MIN_VALUE, MAX_VALUE, NOT_VALID_NUMBER, isNumber} from '../../modules/validation';
 import {TYPE, STATUS} from '../../modules/debt';
 import Select from '../../components/UI/Select/Select';
-import {info} from '../../theme/colors';
+import {backgroundLight, error, info} from '../../theme/colors';
 
-const DebtEditorView = ({name, setName, amount, setAmount, type, setType, description, setDescription, status, setStatus, addDebtHandler}) => {
+const DebtEditorView = ({
+  name,
+  setName,
+  amount,
+  setAmount,
+  type,
+  setType,
+  description,
+  setDescription,
+  status,
+  setStatus,
+  deleteDebtHandler,
+  editDebtHandler,
+  addDebtHandler,
+  debtPublicId,
+  finishFirstLoad,
+}) => {
   const amountRef = useRef(null);
   const {control, errors, handleSubmit, reset} = useForm({
     mode: 'onBlur',
   });
+
+  useEffect(() => {
+    if (finishFirstLoad) {
+      reset({
+        name,
+        amount,
+        type,
+        description,
+        status,
+      });
+    }
+  }, [reset, finishFirstLoad, name, amount, type, description, status]);
+
+  const SaveDebtButton = useMemo(() => {
+    if (debtPublicId) {
+      return (
+        <StyledButtonOpacity style={[styles.sendContainer]} onPress={handleSubmit(() => editDebtHandler(reset))}>
+          <StyledText style={[styles.sendLabel]}>Guardar cambios</StyledText>
+        </StyledButtonOpacity>
+      );
+    }
+
+    return (
+      <StyledButtonOpacity style={[styles.sendContainer]} onPress={handleSubmit(() => addDebtHandler(reset))}>
+        <StyledText style={[styles.sendLabel]}>Crear deuda</StyledText>
+      </StyledButtonOpacity>
+    );
+  }, [debtPublicId, handleSubmit, editDebtHandler, addDebtHandler, reset]);
+
+  const DeleteDebtButton = useMemo(() => {
+    if (debtPublicId) {
+      return (
+        <StyledButtonOpacity style={[styles.deleteContainer]} onPress={deleteDebtHandler}>
+          <StyledText style={[styles.deleteLabel]}>Eliminar</StyledText>
+        </StyledButtonOpacity>
+      );
+    }
+
+    return null;
+  }, [debtPublicId, deleteDebtHandler]);
 
   return (
     <KeyboardAwareScrollView>
@@ -149,9 +205,8 @@ const DebtEditorView = ({name, setName, amount, setAmount, type, setType, descri
             />
           )}
         />
-        <StyledButtonOpacity style={[styles.sendContainer]} onPress={handleSubmit(() => addDebtHandler(reset))}>
-          <StyledText style={[styles.sendLabel]}>Guardar</StyledText>
-        </StyledButtonOpacity>
+        {SaveDebtButton}
+        {DeleteDebtButton}
       </View>
     </KeyboardAwareScrollView>
   );
@@ -176,6 +231,15 @@ const styles = StyleSheet.create({
   },
   sendLabel: {
     textAlign: 'center',
+  },
+  deleteContainer: {
+    marginTop: 25,
+    marginHorizontal: 25,
+    backgroundColor: backgroundLight,
+  },
+  deleteLabel: {
+    textAlign: 'center',
+    color: error,
   },
 });
 
