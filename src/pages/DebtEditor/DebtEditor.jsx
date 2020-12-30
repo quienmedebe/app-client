@@ -1,8 +1,10 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useMemo} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import DebtEditorView from './DebtEditorView';
 import AppLayout from '../../components/layouts/AppLayout';
 import {Debt, Utils, getRealm} from '../../database';
+import {Errors} from '../../modules';
+import Alert from '../../components/UI/Alert/StyledAlert';
 
 const DebtEditor = () => {
   const [name, setName] = useState('');
@@ -10,6 +12,8 @@ const DebtEditor = () => {
   const [type, setType] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
+
+  const [alertType, setAlertType] = useState(null);
   const navigation = useNavigation();
 
   const addDebtHandler = useCallback(
@@ -29,13 +33,25 @@ const DebtEditor = () => {
       };
 
       const errorHandler = () => {
-        // Handle database errors
+        setAlertType(Errors.UNKNOWN);
       };
 
       Utils.writeDB(realm, writeHandler, errorHandler);
     },
     [navigation, name, amount, type, description, status],
   );
+
+  const ShownAlert = useMemo(() => {
+    if (alertType) {
+      switch (alertType) {
+        case Errors.UNKNOWN:
+        default:
+          return <Alert title='Error' message='Ha ocurrido un error creando la deuda' onDismiss={() => setAlertType(null)} />;
+      }
+    }
+
+    return null;
+  }, [alertType]);
 
   return (
     <AppLayout>
@@ -52,6 +68,7 @@ const DebtEditor = () => {
         setStatus={setStatus}
         addDebtHandler={addDebtHandler}
       />
+      {ShownAlert}
     </AppLayout>
   );
 };
