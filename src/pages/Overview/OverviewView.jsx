@@ -1,22 +1,27 @@
 import React, {useCallback, useMemo} from 'react';
-import {View, StyleSheet, FlatList, Image} from 'react-native';
+import {View, StyleSheet, FlatList, Image, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import color from 'color';
 import H1 from '../../components/UI/Text/H1';
 import StyledText from '../../components/UI/Text/StyledText';
 import AddButtonCircle from '../../components/UI/Button/AddButtonCircle';
-import {Formats} from '../../modules';
+import {Formats, Debts} from '../../modules';
 import desertImage from '../../../assets/images/desert.png';
 import {Poppins} from '../../theme/fonts';
+import {backgroundLight, darkText, separator, credit, debt, text} from '../../theme/colors';
 
-const OverviewView = ({debtBalance, pendingDebts}) => {
+const OverviewView = ({debtBalance, pendingDebts, editDebt}) => {
   const navigation = useNavigation();
 
+  const formatter = useMemo(() => {
+    return Formats.currencyFormat('es');
+  }, []);
+
   const BalanceContent = useMemo(() => {
-    const formatter = Formats.currencyFormat('es');
     const formattedBalance = formatter.format(debtBalance);
 
     return <StyledText style={[styles.summaryContent]}>{formattedBalance}</StyledText>;
-  }, [debtBalance]);
+  }, [formatter, debtBalance]);
 
   const EmptyListContent = useMemo(() => {
     return (
@@ -28,10 +33,23 @@ const OverviewView = ({debtBalance, pendingDebts}) => {
     );
   }, []);
 
-  const renderPendingDebtItem = useCallback(item => {
-    console.log(item);
-    return null;
-  }, []);
+  const renderPendingDebtItem = useCallback(
+    ({item}) => {
+      const formattedAmount = formatter.format(item.amount);
+      const backgroundColorStyle = item.type === Debts.TYPE.CREDIT.value ? styles.itemCredit : styles.itemDebt;
+      const textColorStyle = item.type === Debts.TYPE.CREDIT.value ? styles.itemText : styles.itemTextLight;
+
+      return (
+        <TouchableOpacity onPress={() => editDebt(item.public_id)}>
+          <View style={[styles.itemContainer, backgroundColorStyle]}>
+            <StyledText style={[textColorStyle]}>{item.name}</StyledText>
+            <StyledText style={[textColorStyle]}>{formattedAmount}</StyledText>
+          </View>
+        </TouchableOpacity>
+      );
+    },
+    [formatter, editDebt],
+  );
 
   const PendingDebtsList = useMemo(() => {
     if (!pendingDebts.length) {
@@ -78,6 +96,7 @@ const styles = StyleSheet.create({
   },
   pendingDebtsContainer: {
     marginTop: 20,
+    flex: 1,
   },
   pendingDebtsTitle: {
     textAlign: 'center',
@@ -107,6 +126,27 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 25,
     right: 25,
+  },
+  itemContainer: {
+    backgroundColor: backgroundLight,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderBottomColor: separator,
+    borderBottomWidth: 1,
+  },
+  itemCredit: {
+    backgroundColor: color.rgb(credit).alpha(0.8).toString(),
+  },
+  itemDebt: {
+    backgroundColor: color.rgb(debt).alpha(0.8).toString(),
+  },
+  itemText: {
+    color: darkText,
+  },
+  itemTextLight: {
+    color: text,
   },
 });
 

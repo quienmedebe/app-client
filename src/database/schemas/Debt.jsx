@@ -11,6 +11,9 @@ export default {
       type: 'string',
       indexed: true,
     },
+    name: {
+      type: 'string',
+    },
     amount: {
       type: 'double',
     },
