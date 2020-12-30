@@ -13,7 +13,8 @@ const Overview = () => {
   const loadPendingDebts = useCallback(() => {
     const realm = getRealm();
     const debts = Debts.Functions.getPendingDebts(realm).sorted('updated_at', true);
-    setPendingDebts(debts);
+    const adaptedDebts = debts.map(debt => Debts.Adapters.debtAdapter(debt));
+    setPendingDebts(adaptedDebts);
   }, []);
 
   useEffect(() => {

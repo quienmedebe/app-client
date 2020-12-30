@@ -1,14 +1,13 @@
 import React, {useCallback, useMemo} from 'react';
 import {View, StyleSheet, FlatList, Image, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import color from 'color';
 import H1 from '../../components/UI/Text/H1';
 import StyledText from '../../components/UI/Text/StyledText';
 import AddButtonCircle from '../../components/UI/Button/AddButtonCircle';
 import {Formats, Debts} from '../../modules';
 import desertImage from '../../../assets/images/desert.png';
 import {Poppins} from '../../theme/fonts';
-import {backgroundLight, darkText, separator, credit, debt, text} from '../../theme/colors';
+import {separator, credit, debt} from '../../theme/colors';
 
 const OverviewView = ({debtBalance, pendingDebts, editDebt}) => {
   const navigation = useNavigation();
@@ -36,12 +35,11 @@ const OverviewView = ({debtBalance, pendingDebts, editDebt}) => {
   const renderPendingDebtItem = useCallback(
     ({item}) => {
       const formattedAmount = formatter.format(item.amount);
-      const backgroundColorStyle = item.type === Debts.TYPE.CREDIT.value ? styles.itemCredit : styles.itemDebt;
       const textColorStyle = item.type === Debts.TYPE.CREDIT.value ? styles.itemText : styles.itemTextLight;
 
       return (
         <TouchableOpacity onPress={() => editDebt(item.public_id)}>
-          <View style={[styles.itemContainer, backgroundColorStyle]}>
+          <View style={[styles.itemContainer]}>
             <StyledText style={[textColorStyle]}>{item.name}</StyledText>
             <StyledText style={[textColorStyle]}>{formattedAmount}</StyledText>
           </View>
@@ -56,7 +54,7 @@ const OverviewView = ({debtBalance, pendingDebts, editDebt}) => {
       return EmptyListContent;
     }
 
-    return <FlatList data={pendingDebts} renderItem={renderPendingDebtItem} keyExtractor={({id}) => id} />;
+    return <FlatList data={pendingDebts} renderItem={renderPendingDebtItem} keyExtractor={({public_id}) => public_id} />;
   }, [EmptyListContent, pendingDebts, renderPendingDebtItem]);
 
   return (
@@ -128,25 +126,19 @@ const styles = StyleSheet.create({
     right: 25,
   },
   itemContainer: {
-    backgroundColor: backgroundLight,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderBottomColor: separator,
     borderBottomWidth: 1,
-  },
-  itemCredit: {
-    backgroundColor: color.rgb(credit).alpha(0.8).toString(),
-  },
-  itemDebt: {
-    backgroundColor: color.rgb(debt).alpha(0.8).toString(),
+    backgroundColor: 'transparent',
   },
   itemText: {
-    color: darkText,
+    color: credit,
   },
   itemTextLight: {
-    color: text,
+    color: debt,
   },
 });
 
