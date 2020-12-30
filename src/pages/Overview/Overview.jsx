@@ -17,9 +17,21 @@ const Overview = () => {
     setPendingDebts(adaptedDebts);
   }, []);
 
+  const loadBalance = useCallback(() => {
+    const realm = getRealm();
+    const {credit, debt} = Debts.Functions.getPendingBalance(realm);
+    setDebtBalance(credit - debt);
+  }, []);
+
   useEffect(() => {
-    loadPendingDebts();
-  }, [loadPendingDebts]);
+    const realm = getRealm();
+    const unsubscribeFromDebtChanges = Debts.Functions.addDebtListener(realm, () => {
+      loadPendingDebts();
+      loadBalance();
+    });
+
+    return unsubscribeFromDebtChanges;
+  }, [loadPendingDebts, loadBalance]);
 
   const editDebt = useCallback(
     id => {
