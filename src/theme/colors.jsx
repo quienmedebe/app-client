@@ -8,6 +8,7 @@ export const separator = '#555';
 
 export const credit = '#6CDC97';
 export const debt = '#FF697E';
+export const paid = '#7D7461';
 
 export const success = '#4FB477';
 export const warning = '#F39237';

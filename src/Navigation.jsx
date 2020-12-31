@@ -60,6 +60,7 @@ const DebtListStackComponent = () => {
     <DebtListStack.Navigator initialRouteName='DebtList' screenOptions={defaultStackNavigatorOptions}>
       <DebtListStack.Screen name='DebtList' component={DebtList} options={{title: 'Todas las deudas'}} />
       <DebtListStack.Screen name='EditDebt' component={DebtEditor} options={{title: 'Editar deuda'}} />
+      <OverviewStack.Screen name='AddDebt' component={DebtEditor} options={{title: 'Añadir deuda'}} />
     </DebtListStack.Navigator>
   );
 };
