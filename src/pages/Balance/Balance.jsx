@@ -23,7 +23,12 @@ const Balance = () => {
   }, []);
 
   useEffect(() => {
-    loadBalaceDetails();
+    const realm = getRealm();
+    const unsubscribeFromDebtChanges = Debts.Functions.addDebtListener(realm, () => {
+      loadBalaceDetails();
+    });
+
+    return unsubscribeFromDebtChanges;
   }, [loadBalaceDetails]);
 
   return (
