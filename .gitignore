@@ -74,3 +74,9 @@ buck-out/
 **/fastlane/test_output
 
 **/ios/*.app.*.zip
+
+# Android env variables
+**/android/keystore.properties
+
+# Android bundle
+**/android/app/*/*.aab
