@@ -69,6 +69,8 @@ buck-out/
 
 # snapshot generated screenshots
 **/fastlane/screenshots
+# app metadata
+**/fastlane/metadata
 
 # scan temporary files
 **/fastlane/test_output
@@ -80,3 +82,12 @@ buck-out/
 
 # Android bundle
 **/android/app/*/*.aab
+**/android/vendor
+**/android/.bundle
+
+# Environment variables
+**/android/fastlane/.env.development
+**/android/fastlane/.env.production
+
+**/ios/fastlane/.env.development
+**/ios/fastlane/.env.production

@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "5BA7A5AC-A08D-4E2C-92A7-3D86F50B8A84",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:QuienMeDebe.xcodeproj",
+      "identifier" : "13B07F861A680F5B00A75B9A",
+      "name" : "QuienMeDebe"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:QuienMeDebe.xcodeproj",
+        "identifier" : "00E356ED1AD99517003FC87E",
+        "name" : "QuienMeDebeTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:QuienMeDebe.xcodeproj",
+        "identifier" : "C49AE2A625A0D1B2009587B9",
+        "name" : "QuienMeDebeUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

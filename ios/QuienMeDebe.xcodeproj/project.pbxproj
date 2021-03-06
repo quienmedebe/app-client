@@ -35,6 +35,8 @@
 		A5D49B2F95C3EB612C2E5A68 /* libPods-QuienMeDebe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0838767ACF3EAF7364787790 /* libPods-QuienMeDebe.a */; };
 		A95666B392164E6B896C6CF1 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3E1A562B2E54BED9E9140EF /* Poppins-Bold.ttf */; };
 		BF9F95363B844979B077B50D /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDBE70E6A4434DEA84A66330 /* Poppins-Light.ttf */; };
+		C49AE2AA25A0D1B2009587B9 /* QuienMeDebeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49AE2A925A0D1B2009587B9 /* QuienMeDebeUITests.swift */; };
+		C49AE2B725A0D1EA009587B9 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49AE2B625A0D1EA009587B9 /* SnapshotHelper.swift */; };
 		CFD8975EE5BB46EEBC7ACC2E /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 41F6D30F22F24EE68E64AB0E /* Poppins-ExtraLight.ttf */; };
 		DA44A481874F4AD4B75BD2A2 /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB00A79A6CF141F58015995A /* Poppins-LightItalic.ttf */; };
 		EA9F54CD008148D49B935FE1 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56F99E9184A442689E5F691B /* Poppins-Thin.ttf */; };
@@ -55,6 +57,13 @@
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "QuienMeDebe-tvOS";
 		};
+		C49AE2AC25A0D1B2009587B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = QuienMeDebe;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +79,6 @@
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = QuienMeDebe/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = QuienMeDebe/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = QuienMeDebe/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = QuienMeDebe/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = QuienMeDebe/main.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* QuienMeDebe-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QuienMeDebe-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* QuienMeDebe-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "QuienMeDebe-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +104,10 @@
 		B1FA5247FDD35A3AC33528DB /* Pods-QuienMeDebe-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuienMeDebe-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-QuienMeDebe-tvOSTests/Pods-QuienMeDebe-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C1C6A17C896C49E1B1002EF0 /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BlackItalic.ttf"; path = "../assets/fonts/Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
 		C35124C66C764E1087A354D8 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLightItalic.ttf"; path = "../assets/fonts/Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		C49AE2A725A0D1B2009587B9 /* QuienMeDebeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuienMeDebeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C49AE2A925A0D1B2009587B9 /* QuienMeDebeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuienMeDebeUITests.swift; sourceTree = "<group>"; };
+		C49AE2AB25A0D1B2009587B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C49AE2B625A0D1EA009587B9 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		C4E938FD2590B89100309B89 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		C4E938FE2590B89100309B89 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		C4E938FF2590B89100309B89 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -154,6 +166,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C49AE2A425A0D1B2009587B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -181,7 +200,6 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -255,6 +273,7 @@
 				13B07FAE1A68108700A75B9A /* QuienMeDebe */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* QuienMeDebeTests */,
+				C49AE2A825A0D1B2009587B9 /* QuienMeDebeUITests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				28C64DCEB86ADF855DB94ED0 /* Pods */,
@@ -272,8 +291,19 @@
 				00E356EE1AD99517003FC87E /* QuienMeDebeTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* QuienMeDebe-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* QuienMeDebe-tvOSTests.xctest */,
+				C49AE2A725A0D1B2009587B9 /* QuienMeDebeUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C49AE2A825A0D1B2009587B9 /* QuienMeDebeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C49AE2B625A0D1EA009587B9 /* SnapshotHelper.swift */,
+				C49AE2A925A0D1B2009587B9 /* QuienMeDebeUITests.swift */,
+				C49AE2AB25A0D1B2009587B9 /* Info.plist */,
+			);
+			path = QuienMeDebeUITests;
 			sourceTree = "<group>";
 		};
 		C4E938FC2590B89100309B89 /* Fonts */ = {
@@ -383,16 +413,36 @@
 			productReference = 2D02E4901E0B4A5D006451C7 /* QuienMeDebe-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C49AE2A625A0D1B2009587B9 /* QuienMeDebeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C49AE2B025A0D1B2009587B9 /* Build configuration list for PBXNativeTarget "QuienMeDebeUITests" */;
+			buildPhases = (
+				C49AE2A325A0D1B2009587B9 /* Sources */,
+				C49AE2A425A0D1B2009587B9 /* Frameworks */,
+				C49AE2A525A0D1B2009587B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C49AE2AD25A0D1B2009587B9 /* PBXTargetDependency */,
+			);
+			name = QuienMeDebeUITests;
+			productName = QuienMeDebeUITests;
+			productReference = C49AE2A725A0D1B2009587B9 /* QuienMeDebeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						ProvisioningStyle = Manual;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
@@ -402,12 +452,18 @@
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+					};
+					C49AE2A625A0D1B2009587B9 = {
+						CreatedOnToolsVersion = 12.3;
+						DevelopmentTeam = C9RA3ZJC56;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 				};
 			};
@@ -418,6 +474,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -428,6 +485,7 @@
 				00E356ED1AD99517003FC87E /* QuienMeDebeTests */,
 				2D02E47A1E0B4A5D006451C7 /* QuienMeDebe-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* QuienMeDebe-tvOSTests */,
+				C49AE2A625A0D1B2009587B9 /* QuienMeDebeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -476,6 +534,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2D02E48E1E0B4A5D006451C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C49AE2A525A0D1B2009587B9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -776,6 +841,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C49AE2A325A0D1B2009587B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C49AE2AA25A0D1B2009587B9 /* QuienMeDebeUITests.swift in Sources */,
+				C49AE2B725A0D1EA009587B9 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -789,6 +863,11 @@
 			target = 2D02E47A1E0B4A5D006451C7 /* QuienMeDebe-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
+		C49AE2AD25A0D1B2009587B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* QuienMeDebe */;
+			targetProxy = C49AE2AC25A0D1B2009587B9 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -798,6 +877,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -822,6 +902,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = QuienMeDebeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -846,7 +927,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = C9RA3ZJC56;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = QuienMeDebe/Info.plist;
@@ -862,7 +943,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.quienmedebe.application";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -876,11 +957,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = C9RA3ZJC56;
 				INFOPLIST_FILE = QuienMeDebe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -890,7 +972,7 @@
 				PRODUCT_NAME = QuienMeDebe;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.quienmedebe.application";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -905,6 +987,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -933,6 +1016,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -960,6 +1044,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -987,6 +1072,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1038,6 +1124,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1099,6 +1186,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1117,6 +1205,63 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C49AE2AE25A0D1B2009587B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 873018CFAE20E1214957021F /* Pods-QuienMeDebe.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = C9RA3ZJC56;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QuienMeDebeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quienmedebe.QuienMeDebeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = QuienMeDebe;
+			};
+			name = Debug;
+		};
+		C49AE2AF25A0D1B2009587B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9E475B3F61A0A6660B4C86B /* Pods-QuienMeDebe.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = C9RA3ZJC56;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QuienMeDebeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quienmedebe.QuienMeDebeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = QuienMeDebe;
 			};
 			name = Release;
 		};
@@ -1164,6 +1309,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C49AE2B025A0D1B2009587B9 /* Build configuration list for PBXNativeTarget "QuienMeDebeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C49AE2AE25A0D1B2009587B9 /* Debug */,
+				C49AE2AF25A0D1B2009587B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

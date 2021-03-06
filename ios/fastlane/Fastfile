@@ -1,0 +1,85 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+
+  # Helper function
+  def updateVersion(options)
+    if options[:version]
+      version = options[:version]
+    else
+      version = prompt(text: "Enter the version type or specific version\n(major, minor, patch or 1.0.0): ")
+    end
+
+    re = /\d+.\d+.\d+/
+    versionNum = version[re, 0]
+
+    if (versionNum)
+      increment_version_number(
+        version_number: versionNum
+      )
+    elsif (version == 'major' || version == 'minor' || version == 'patch')
+      increment_version_number(
+        bump_type: version
+      )
+    else
+      UI.user_error!("[ERROR] Wrong version!!!!!!")
+    end
+  end
+
+  # fastlane beta [options]
+  desc "Push a new beta build to TestFlight"
+  lane :beta do |options|
+    match(type: 'appstore')
+    updateVersion(options)
+
+    increment_build_number(xcodeproj: ENV["PROJECT_FILE"])
+    build_app(workspace: ENV["PROJECT_WORKSPACE"], scheme: ENV["PROJECT_SCHEME"])
+    upload_to_testflight
+  end
+
+  # fastlane release [options]
+  desc "Push a new release build to the App Store"
+  lane :release do |options|
+    match(type: 'appstore')
+    updateVersion(options)
+
+    increment_build_number(xcodeproj: ENV["PROJECT_FILE"])
+    build_app(workspace: ENV["PROJECT_WORKSPACE"], scheme: ENV["PROJECT_SCHEME"])
+    upload_to_app_store(
+      force: true,
+      reject_if_possible: true,
+      skip_metadata: false,
+      skip_screenshots: true,
+      languages: ['es-ES'],
+      release_notes: {
+        "default" => "bug fixed",
+        "es-ES" => "bug fixed",
+      },
+      submit_for_review: true,
+      automatic_release: true,
+      submission_information: {
+        add_id_info_uses_idfa: true,
+        add_id_info_serves_ads: true,
+        add_id_info_tracks_install: true,
+        add_id_info_tracks_action: false,
+        add_id_info_limits_tracking: true,
+        export_compliance_encryption_updated: false,
+      }
+    )
+  end
+end
