@@ -10,6 +10,12 @@
     "build:ios": "react-native run-ios",
     "build:all": "npm run build:android; npm run build:ios",
     "ios:pods": "cd ios && pod install; cd ..",
+    "beta:android": "cd ./android && fastlane beta --env development",
+    "beta:ios": "cd ./ios && fastlane beta --env development",
+    "beta:all": "npm run beta:android && npm run beta:ios",
+    "release:android": "cd ./android && fastlane release --env production",
+    "release:ios": "cd ./ios && fastlane release --env production",
+    "release:all": "npm run release:android && npm run release:ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."

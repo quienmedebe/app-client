@@ -33,7 +33,7 @@ const DebtListView = ({debts, editDebt}) => {
       const textColorStyle = item.type === Debts.TYPE.CREDIT.value ? styles.itemText : styles.itemTextLight;
 
       return (
-        <TouchableOpacity onPress={() => editDebt(item.public_id)}>
+        <TouchableOpacity testId={`DebtList_Item_${item.public_id}`} onPress={() => editDebt(item.public_id)}>
           <View style={[styles.itemContainer, bgStyle]}>
             <StyledText style={[textColorStyle]}>{item.name}</StyledText>
             <StyledText style={[textColorStyle]}>{formattedAmount}</StyledText>

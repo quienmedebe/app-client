@@ -38,7 +38,7 @@ const OverviewView = ({debtBalance, pendingDebts, editDebt}) => {
       const textColorStyle = item.type === Debts.TYPE.CREDIT.value ? styles.itemText : styles.itemTextLight;
 
       return (
-        <TouchableOpacity onPress={() => editDebt(item.public_id)}>
+        <TouchableOpacity testId={`Overview_PendingItem_${item.public_id}`} onPress={() => editDebt(item.public_id)}>
           <View style={[styles.itemContainer]}>
             <StyledText style={[textColorStyle]}>{item.name}</StyledText>
             <StyledText style={[textColorStyle]}>{formattedAmount}</StyledText>
@@ -68,7 +68,7 @@ const OverviewView = ({debtBalance, pendingDebts, editDebt}) => {
         {PendingDebtsList}
       </View>
       <View style={[styles.addDebtContainer]}>
-        <AddButtonCircle onPress={() => navigation.navigate('AddDebt')} />
+        <AddButtonCircle testId='Overview_AddDebt' onPress={() => navigation.navigate('AddDebt')} />
       </View>
     </View>
   );

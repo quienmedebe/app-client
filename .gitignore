@@ -60,3 +60,34 @@ buck-out/
 
 # Environment variables
 .env
+
+# Fastlane
+**/fastlane/report.xml
+
+# deliver temporary files
+**/fastlane/Preview.html
+
+# snapshot generated screenshots
+**/fastlane/screenshots
+# app metadata
+**/fastlane/metadata
+
+# scan temporary files
+**/fastlane/test_output
+
+**/ios/*.app.*.zip
+
+# Android env variables
+**/android/keystore.properties
+
+# Android bundle
+**/android/app/*/*.aab
+**/android/vendor
+**/android/.bundle
+
+# Environment variables
+**/android/fastlane/.env.development
+**/android/fastlane/.env.production
+
+**/ios/fastlane/.env.development
+**/ios/fastlane/.env.production

@@ -50,14 +50,14 @@ const DebtEditorView = ({
   const SaveDebtButton = useMemo(() => {
     if (debtPublicId) {
       return (
-        <StyledButtonOpacity style={[styles.sendContainer]} onPress={handleSubmit(() => editDebtHandler(reset))}>
+        <StyledButtonOpacity testId='DebtEditor_button-save' style={[styles.sendContainer]} onPress={handleSubmit(() => editDebtHandler(reset))}>
           <StyledText style={[styles.sendLabel]}>Guardar cambios</StyledText>
         </StyledButtonOpacity>
       );
     }
 
     return (
-      <StyledButtonOpacity style={[styles.sendContainer]} onPress={handleSubmit(() => addDebtHandler(reset))}>
+      <StyledButtonOpacity testId='DebtEditor_button-save' style={[styles.sendContainer]} onPress={handleSubmit(() => addDebtHandler(reset))}>
         <StyledText style={[styles.sendLabel]}>Crear deuda</StyledText>
       </StyledButtonOpacity>
     );
@@ -103,6 +103,7 @@ const DebtEditorView = ({
               maxLength={MAX_FIELD_LENGTH}
               returnKeyType='next'
               onSubmitEditing={() => amountRef.current?.focus()}
+              testId='DebtEditor_name'
             />
           )}
         />
@@ -132,6 +133,7 @@ const DebtEditorView = ({
               error={!!errors.amount?.message}
               autoCompleteType='off'
               keyboardType='decimal-pad'
+              testId='DebtEditor_amount'
             />
           )}
         />
@@ -153,6 +155,7 @@ const DebtEditorView = ({
               onBlur={onBlur}
               placeholder={{value: '', label: 'Tipo de deuda'}}
               error={!!errors.type?.message}
+              testId='DebtEditor_type'
             />
           )}
         />
@@ -181,6 +184,7 @@ const DebtEditorView = ({
               keyboardType='default'
               maxLength={MAX_FIELD_LENGTH}
               returnKeyType='next'
+              testId='DebtEditor_description'
             />
           )}
         />
@@ -202,6 +206,7 @@ const DebtEditorView = ({
               onBlur={onBlur}
               placeholder={{value: '', label: 'Estado de la deuda'}}
               error={!!errors.status?.message}
+              testId='DebtEditor_status'
             />
           )}
         />
