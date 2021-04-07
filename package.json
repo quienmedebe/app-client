@@ -18,8 +18,7 @@
     "release:all": "npm run release:android && npm run release:ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint .",
-    "prepare": "husky install"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
