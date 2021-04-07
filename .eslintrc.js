@@ -2,9 +2,10 @@ module.exports = {
   root: true,
   env: {
     'react-native/react-native': true,
+    'jest/globals': true,
   },
-  plugins: ['react-native', 'react-hooks', 'prettier'],
-  extends: ['eslint:recommended', 'plugin:prettier/recommended', '@react-native-community'],
+  plugins: ['react-native', 'react-hooks', 'prettier', 'jest'],
+  extends: ['eslint:recommended', 'plugin:prettier/recommended', '@react-native-community', 'plugin:jest/recommended', 'plugin:jest/style'],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
