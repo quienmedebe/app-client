@@ -10,7 +10,7 @@ import AppError from './src/AppError';
 import {PaperTheme} from './src/theme/paper';
 import {connectDB} from './src/database';
 
-const App = () => {
+const App: React.FC = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
