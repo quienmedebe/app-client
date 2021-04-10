@@ -5,7 +5,7 @@ module.exports = {
     'jest/globals': true,
   },
   plugins: ['react-native', 'react-hooks', 'prettier', 'jest'],
-  extends: ['eslint:recommended', 'plugin:prettier/recommended', '@react-native-community', 'plugin:jest/recommended', 'plugin:jest/style'],
+  extends: ['eslint:recommended', 'plugin:prettier/recommended', '@react-native-community', 'plugin:jest/recommended', 'plugin:jest/style', 'testing-library'],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
