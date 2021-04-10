@@ -1,12 +1,8 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import AppErrorView from './AppErrorView';
 
 const AppError: React.FC = () => {
-  return (
-    <View>
-      <Text></Text>
-    </View>
-  );
+  return <AppErrorView />;
 };
 
 export default AppError;

@@ -1,9 +1,9 @@
 import React from 'react';
 import {render} from '@testing-library/react-native';
-import AppError from './AppError';
+import AppErrorView from './AppErrorView';
 
 describe('AppError test suite', () => {
   test('It should render without crashing', () => {
-    expect(() => render(<AppError />)).not.toThrow();
+    expect(() => render(<AppErrorView />)).not.toThrow();
   });
 });
