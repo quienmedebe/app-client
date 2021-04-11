@@ -1,7 +1,6 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
 import AppErrorView from './AppErrorView';
-import AppError from './AppError';
 
 jest.mock('../../modules/core');
 
@@ -25,13 +24,4 @@ describe('AppError test suite', () => {
 
     expect(fakeRestartHandler).toHaveBeenCalledTimes(1);
   });
-
-  // test('it should fire the restart button', () => {
-  //   const {getByA11yLabel} = render(<AppError/>)
-  //   const button = getByA11yLabel(/Restart/i);
-
-  //   fireEvent.press(button);
-
-  //   expect()
-  // });
 });
